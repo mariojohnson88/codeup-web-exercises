@@ -1,4 +1,49 @@
-.fancy-header {
-    color: purple;
-    text-decoration: underline;
+h1 {
+    text-align: center;
 }
+
+h1, h2#center {
+    color: ghostwhite;
+    text-decoration: underline;
+    text-align: center;
+}
+
+body {
+    /*background: tan;*/
+    background-image: url("../images/blue-sky-clear-sky-cold.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: futura, ariel, sans-serif;
+    color: ghostwhite;
+}
+
+li {
+    list-style: circle;
+}
+
+table {
+    border-style: solid;
+    border-color: darkorange;
+}
+
+td {
+    border-style: solid;
+    border-color: darkorange;
+}
+a:link {
+    color:black;
+}
+
+a:visited {
+    color: yellow;
+}
+
+a:hover {
+    color: lightpink;
+}
+
+a:active {
+ color: deeppink;
+}
+
