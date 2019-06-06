@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1200px;
+}
+
+.row {
+    width: 100%;
+    margin: 10px;
+    background-color: #eee;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column {
+    padding: 10px;
+
+}
+
+.column.one-half {
+    border: 1px solid black;
+    width: 50%;
+    float: left;
+
+}
+
+.column.one-third {
+    border: 1px solid black;
+    width: 33.33%;
+    float: left;
+}
+
+.column.one-fourth {
+    border: 1px solid black;
+    width: 25%;
+    float: left;
+}
+
+.column.one-sixth {
+    border: 1px solid black;
+    width: 16.66%;
+    float: left;
+}
+
+.column.one-eighth {
+    border: 1px solid black;
+    width: 12.5%;
+    float: left;
+}
+
