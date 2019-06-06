@@ -57,3 +57,27 @@
     float: left;
 }
 
+.one-half-color {
+    background-color: #60E1B8;
+}
+
+.one-third-color {
+    background-color: #8856B8;
+}
+
+
+.one-fourth-color {
+    background-color: #F5AE1B;
+}
+
+.one-sixth-color {
+    background-color: #14BCFF;
+}
+
+.one-eighth-color {
+    background-color: #930200;
+}
+
+/*.one-third-color {*/
+/*    background-color: #;*/
+/*}*/
