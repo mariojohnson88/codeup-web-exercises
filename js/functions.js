@@ -77,11 +77,12 @@ console.log(isTwo(random));
  */
 
 var total = Number(prompt("What was your total?"));
-var tip = Number(prompt("How much would you like to tip?"));
+var tip = Number(prompt("What percentage would you like to tip?"));
 
 function calculateTip(t,p) {
     return t * (p * .01);
 }
+
 alert("You should tip: $" + calculateTip(total,tip));
 
 
@@ -112,10 +113,18 @@ alert("You should tip: $" + calculateTip(total,tip));
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 
-var initialPrice = Number(prompt("What was the initial price?"));
-var discountValue = Number(prompt('How much discount to apply'));
+console.log(applyDiscount(150, 35));
 
-function applyDiscount (i,d) {
-    return i - (i*d);
+function applyDiscount(price,discount) {
+    var newDiscount =  price * (discount * .01);
+    return price - newDiscount;
 }
-console.log("total is" + applyDiscount(initialPrice,discountValue));
+
+
+// var initialPrice = Number(prompt("What was the initial price?"));
+// var discountValue = Number(prompt('How much discount to apply'));
+//
+// function applyDiscount (i,d) {
+//     return i - (i*d);
+// }
+// console.log("total is" + applyDiscount(initialPrice,discountValue));
