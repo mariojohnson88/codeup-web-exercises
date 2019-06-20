@@ -31,7 +31,7 @@
 
 
     console.log('Removing "Pluto" from the end of the planets array.');
-    planets.pop('Pluto');
+    planets.pop();
     console.log(planets);
 
 
