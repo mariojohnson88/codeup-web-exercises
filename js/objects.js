@@ -12,8 +12,6 @@
      *  > console.log(person.lastName) // "Sanchez"
      */
 
-
-
 var person = {
 
     name: {
@@ -24,7 +22,6 @@ var person = {
 };
     console.log(person.name.firstName);
     console.log(person.name.lastName);
-
 
     /**
      * TODO:
@@ -119,10 +116,6 @@ person.sayHello = function () {
     console.log(books[3].title);
     console.log(books[4].author.firstName);
 
-
-
-
-
     /**
      * TODO:
      * Loop through the books array and output the following information about
@@ -130,7 +123,16 @@ person.sayHello = function () {
      * - the book number (use the index of the book in the array)
      * - the book title
      * - author's full name (first name + last name)
-     *
+     */
+
+    books.forEach(function(book,i) {
+        console.log("Book # " + (i+1));
+        console.log("Title: " + book.title);
+        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+        console.log("---");
+    });
+
+    /**
      * Example Console Output:
      *
      *      Book # 1
@@ -147,6 +149,9 @@ person.sayHello = function () {
      *      ---
      *      ...
      */
+
+
+
 
     /**
      * Bonus:
