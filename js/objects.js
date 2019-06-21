@@ -179,7 +179,19 @@ person.sayHello = function () {
      *      ---
      *      ...
      */
-
+// function createbook(title, firstName, lastName) {
+//     var book = {};
+//     book.title = title;
+//     book.author = {};
+//     book.author.firstName = {};
+//     book.author.lastName = {};
+//     return book;
+//
+//     }
+//
+//     books.push(createbook("How to draw Manga", firstName "Katy", lastName "cCoope"));
+//     console.log(books);
+//
 
 
 
