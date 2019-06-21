@@ -34,7 +34,7 @@ var person = {
      */
 
 person.sayHello = function () {
-    return "Hey there " + person.name.firstName;
+    return "Hello from " + person.name.firstName + " " + person.name.lastName;
 };
     console.log(person.sayHello());
 
@@ -53,11 +53,41 @@ person.sayHello = function () {
      * and console.log the relevant messages for each person
      */
 
-    // var shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
+    var shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
+
+    function applyDiscount (customerAmount) {
+        var output = 0;
+        if (customerAmount > 200) {
+            output = customerAmount * .12;
+        }
+        return output;
+    }
+
+    function convertToCurrency (num){
+        return "$" + num.toFixed(2);
+    }
+
+    function displayShopperInfo(shopper){
+        var output = "";
+        var amount = convertToCurrency(shopper.amount);
+        var discount = convertToCurrency(applyDiscount(shopper.amount));
+        var finalAmount = convertToCurrency(shopper.amount - applyDiscount(shopper.amount));
+        output += shopper.name + " spent " + amount;
+        output += " and recieved a discount of " + discount;
+        output += " and paid " + finalAmount;
+        return output;
+    }
+
+    function displayShoppersInfo(shoppers) {
+        shoppers.forEach(function (shopper) {
+            console.log(displayShopperInfo(shopper));
+        });
+    }
+    displayShoppersInfo(shoppers);
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
