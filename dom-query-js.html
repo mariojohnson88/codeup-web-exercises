@@ -52,6 +52,9 @@
             subHeader.style.color = "blue";
         };
 
+        // OR
+        // document.getElementById('btn2').addEventListener('click', function() {
+        // }, false);
 
         // TODO: Uncomment the next line and get all list items
         var listItems = document.getElementsByTagName('li');
@@ -88,7 +91,7 @@
         var mission = function() {
             subParagraphs[0].innerText = "Mission Accomplished!";
         };
-
+        document.getElementById('GKey').addEventListener('keyup', GStrokeUp, false);
         document.getElementById('btn1').addEventListener('click', changeJava, false);
         document.getElementById('btn2').addEventListener('click', blueSubHeader, false);
         document.getElementById('btn3').addEventListener('click', changeAttributes, false);
