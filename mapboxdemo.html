@@ -23,16 +23,40 @@
 
 <!-- Mapbox JS -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
-
+<script src="js/keys.js"></script>
 <!-- Custom JS -->
 <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWpvaG5zb24xOTg4IiwiYSI6ImNqeGF2cDJ5dTAxbGozb2xpYTNkNjljdXIifQ.44oCJKffArvtGo9P-uWPWw';
+
+    mapboxgl.accessToken = mapboxAPI;
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         zoom: 10,
-        center: [121.0244, 14.5547]
+        center: [-98.4916, 29.4252]
     });
+    // map.setZoom(4);
+    // This adds both a popup && a marker to your location
+    var marker = new mapboxgl.Marker()
+        .setLngLat([-98.4916, 29.4260])
+        .addTo(map);
+    var alamoPopup = new mapboxgl.Popup()
+        .setHTML("<p>Remember The Alamo!</p>")
+        .addTo(map);
+
+    marker.setPopup(alamoPopup)
+
+
+
+
+    // var popup = new mapboxgl.Popup()
+    //     .setLngLat([-98.489615, 29.426827])
+    //     .setHTML("<p>Codeup Rocks!...kinda.</p>")
+    //     .addTo(map);
+
+
+
+
+
 </script>
 </body>
 </html>

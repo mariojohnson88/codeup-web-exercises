@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox GL JS Exercise</title>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        /*Not necessary for the actual function of the map just adds style*/
+         #map {
+             width: 100%;
+             height: 700px;
+        }
+    </style>
+</head>
+<body>
+<h1>Mapbox</h1>
+<div id='map'></div>
+
+
+
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src='js/keys.js'></script>
+<script src='js/mapbox-geocoder-utils.js'></script>
+<script>
+
+    mapboxgl.accessToken = mapboxAPI;
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 10,
+        center: [-97.74306, 30.26715]
+    });
+
+    geocode("Ramen tatsu-ya, Austin, TX", mapboxAPI).then(function(lngLat){
+        map.setCenter(lngLat);
+    })
+</script>
+</body>
+</html>
