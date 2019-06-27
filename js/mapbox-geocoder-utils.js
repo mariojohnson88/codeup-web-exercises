@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 function geocode(search, token) {
     var baseUrl = 'https://api.mapbox.com';
