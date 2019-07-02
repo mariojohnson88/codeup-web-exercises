@@ -1,5 +1,5 @@
 "use strict";
-
+$(document).ready(
 // This alerts the html of the element with the id of "second paragraph"
 
 // var content = $('#second-paragraph').html();
@@ -19,6 +19,33 @@
 
 // Element selectors
 
-$('li').css('font-size', '20px');
-$('h1, p, li').css('background-color', '#ef0');
-alert($('h1').html());
+// $('li').css('font-size', '20px');
+//
+// $('h1, p, li').css('background-color', '#ef0');
+//
+// alert($('h1').html());
+
+
+
+
+
+    // Mouse Events Exercise
+
+
+$('h1').click(function(){
+    $('h1').css('background-color', '#42D2A9')
+}),
+
+$('p').dblclick(function(){
+    $('p').css('font-size', '18px')
+}),
+
+$('li').hover(
+    function() {
+        $(this).css('color', 'red');
+    },
+    function() {
+        $(this).css('color', 'black');
+    })
+
+);
