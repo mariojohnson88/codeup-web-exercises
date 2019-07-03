@@ -1,9 +1,11 @@
 "use strict";
 
 $(document).ready(function() {
-    $('#visible').click(function(event) {
-        event.preventDefault();
-        $('dd').toggleClass('invisible')
+    $('#visible').click(function() {
+        $('dd').toggleClass('invisible');
+        $('dt').click(function () {
+            $(this).css('background-color', '#FFB2F5')
+        });
     });
 
 
