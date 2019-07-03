@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+<h1>Konami Code</h1>
+
+
+
+
+
+<script src="js/jquery.js"></script>
+<script>
+    "use strict";
+    // $(document).keyup(function(event){
+    //     konamiEntered.push(event.key);
+    //     console.log(konamiEntered);
+    // });
+    var konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"];
+    var konamiPosition = 0;
+    $(document).keyup(function(e) {
+        if(e.key === konamiCode[konamiPosition]) {
+            konamiPosition++;
+            console.log(konamiPosition);
+            if (konamiPosition === konamiCode.length) {
+                alert("You have added 30 lives!")
+            }
+        } else {
+            konamiPosition = 0;
+        }
+    });
+
+</script>
+</body>
+</html>
