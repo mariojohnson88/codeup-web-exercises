@@ -11,11 +11,12 @@
 <body>
 <h1>Weather Application</h1>
 
-<h3 id="selectedCity"></h3>
-<div id="weather"></div>
-<div id='map' style='width: 800px; height: 700px;'></div>
+<h3 id="selectedCity">San Antonio</h3>
 
-
+<div class="container">
+        <div id="weather" class="row"></div>
+        <div id='map' style='width: 800px; height: 700px;'></div>
+</div>
 
 
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
@@ -33,7 +34,7 @@
             data.forEach(function(condition,i) {
                 // console.log(condition);
                 if(i <= 2) {
-                    html += "<div>";
+                    html += "<div class='col-4'>";
                     html += "<p>" + condition.apparentTemperatureHigh + "°/" + condition.apparentTemperatureLow + "°</p>";
                     html += "<p>" + "<strong>Clouds: </strong>" + condition.icon + "</p>";
                     html += "<p>" + "<strong>Humidity: </strong>" + condition.humidity + "</p>";
@@ -45,6 +46,11 @@
             $('#weather').append(html)
         }
 
+
+
+
+
+
 </script>
 <script>
     mapboxgl.accessToken = mapboxAPI;
@@ -53,7 +59,7 @@
         style: 'mapbox://styles/mapbox/streets-v9'
     });
 </script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
