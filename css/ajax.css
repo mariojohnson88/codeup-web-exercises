@@ -1,4 +1,7 @@
 body {
-    background-image: url('/images/tool-wall.jpeg');
+    background-image: url('../images/toolset.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: floralwhite;
 }
 
