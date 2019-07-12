@@ -15,16 +15,15 @@
 
 <div class="container">
         <div id="weather" class="row"></div>
-        <div id='map' style='width: 800px; height: 700px;'></div>
+        <div id='map' style='width: 100%; height: 700px;'></div>
 </div>
-
 
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
 <script src="js/keys.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
         $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function(data){
-            // console.log(data);
+            console.log(data);
             addCurrentConditions(data.daily.data);
         });
         
@@ -32,7 +31,7 @@
             var html = "";
             console.log(data);
             data.forEach(function(condition,i) {
-                // console.log(condition);
+                console.log(condition);
                 if(i <= 2) {
                     html += "<div class='col-4'>";
                     html += "<p>" + condition.apparentTemperatureHigh + "°/" + condition.apparentTemperatureLow + "°</p>";
@@ -48,9 +47,6 @@
 
 
 
-
-
-
 </script>
 <script>
     mapboxgl.accessToken = mapboxAPI;
@@ -59,7 +55,8 @@
         style: 'mapbox://styles/mapbox/streets-v9'
     });
 </script>
-<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+
+<script src="js/weather_map.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
