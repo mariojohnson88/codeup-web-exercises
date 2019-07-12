@@ -23,7 +23,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
         $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function(data){
-            console.log(data);
+            // console.log(data);
             addCurrentConditions(data.daily.data);
         });
         
@@ -31,11 +31,11 @@
             var html = "";
             console.log(data);
             data.forEach(function(condition,i) {
-                console.log(condition);
+                // console.log(condition);
                 if(i <= 2) {
                     html += "<div>";
                     html += "<p>" + condition.apparentTemperatureHigh + "°/" + condition.apparentTemperatureLow + "°</p>";
-                    html += "<p>" + "<strong>Clouds: </strong>" + condition.cloudCover + "</p>";
+                    html += "<p>" + "<strong>Clouds: </strong>" + condition.icon + "</p>";
                     html += "<p>" + "<strong>Humidity: </strong>" + condition.humidity + "</p>";
                     html += "<p>" + "<strong>Wind: </strong>" + condition.windSpeed + "</p>";
                     html += "<p>" + "<strong>Pressure: </strong>" + condition.pressure + "</p>";
