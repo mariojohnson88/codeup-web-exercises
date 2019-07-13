@@ -17,6 +17,7 @@
         <div id="weather" class="row"></div>
         <div id='map' style='width: 100%; height: 700px;'></div>
 </div>
+<!--<img src="climacons-master/SVG/Cloud.svg" alt="">-->
 
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
 <script src="js/keys.js"></script>
@@ -26,17 +27,28 @@
             console.log(data);
             addCurrentConditions(data.daily.data);
         });
-        
+
         function addCurrentConditions(data) {
+            var url;
+            var forecast;
+            var forecastSummary;
             var html = "";
             console.log(data);
-            data.forEach(function(condition,i) {
+            data.forEach(function(condition, i) {
+                iconObjects.forEach(function (value) {
+                    if (condition.icon === value.condition) {
+                        url = value.url;
+                        forecast = value.forecast;
+                        forecastSummary = value.forecastSummary;
+                    }
+                });
                 console.log(condition);
                 if(i <= 2) {
                     html += "<div class='col-4'>";
-                    html += "<p>" + condition.apparentTemperatureHigh + "°/" + condition.apparentTemperatureLow + "°</p>";
-                    html += "<p>" + "<strong>Clouds: </strong>" + condition.icon + "</p>";
-                    html += "<p>" + "<strong>Humidity: </strong>" + condition.humidity + "</p>";
+                    html += "<p>" + Math.round(condition.apparentTemperatureHigh) + "°/" + Math.round(condition.apparentTemperatureLow) + "°</p>";
+                    html += "<img src='" + url + "'>";
+                    html += "<p>" + "<strong>" + forecast + ": </strong>" + forecastSummary + "</p>";
+                    html += "<p>" + "<strong>Humidity: </strong>" + Math.round(condition.humidity * 100) + "</p>";
                     html += "<p>" + "<strong>Wind: </strong>" + condition.windSpeed + "</p>";
                     html += "<p>" + "<strong>Pressure: </strong>" + condition.pressure + "</p>";
                     html += "</div>";
@@ -44,7 +56,6 @@
             });
             $('#weather').append(html)
         }
-
 
 
 </script>
