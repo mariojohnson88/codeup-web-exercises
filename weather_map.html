@@ -11,12 +11,14 @@
 <body>
 <h1>Weather Application</h1>
 
-<h3 id="selectedCity">San Antonio</h3>
+<h3 id="selectedCity">Austin</h3>
 
 <div class="coordinates">
-    <input type="text" id="latitude" name="latitude" placeholder="Latitude">
-    <input type="text" id="longitude" name="longitude" placeholder="Longitude">
-    <button type="submit" class="btn">Search Coordinates</button>
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" name="latitude" placeholder="Enter Latitude">
+    <label for="latitude">Longitude:</label>
+    <input type="text" id="longitude" name="longitude" placeholder="Enter Longitude">
+    <button type="submit">Sumbit Coordinates</button>
 </div>
 
 <div class="container">
@@ -24,64 +26,11 @@
         <div id='map' style='width: 100%; height: 700px;'></div>
 </div>
 
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
-<script src="js/keys.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script>
-        $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function(data){
-            console.log(data);
-            addCurrentConditions(data.daily.data);
-        });
-
-        function addCurrentConditions(data) {
-            var url;
-            var forecast;
-            var forecastSummary;
-            var html = "";
-            console.log(data);
-            data.forEach(function(condition, i) {
-                iconObjects.forEach(function (value) {
-                    if (condition.icon === value.condition) {
-                        url = value.url;
-                        forecast = value.forecast;
-                        forecastSummary = value.forecastSummary;
-                    }
-                });
-                console.log(condition);
-                if(i <= 2) {
-                    html += "<div class='col-4'>";
-                    html += "<p>" + Math.round(condition.apparentTemperatureHigh) + "°/" + Math.round(condition.apparentTemperatureLow) + "°</p>";
-                    html += "<img src='" + url + "'>";
-                    html += "<p>" + "<strong>" + forecast + ": </strong>" + forecastSummary + "</p>";
-                    html += "<p>" + "<strong>Humidity: </strong>" + Math.round(condition.humidity * 100) + "</p>";
-                    html += "<p>" + "<strong>Wind: </strong>" + condition.windSpeed + "</p>";
-                    html += "<p>" + "<strong>Pressure: </strong>" + condition.pressure + "</p>";
-                    html += "</div>";
-                }
-            });
-            $('#weather').append(html)
-        }
-
-
-        //for accepting the values of long and lat
-        $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/" + lat + long).done(function(data){
-            var lat = latitude;
-            var long = longitude;
-        }); $('.btn').click(function(){
-
-        });
-
-</script>
-<script>
-    mapboxgl.accessToken = mapboxAPI;
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9'
-    });
-</script>
-
-<script src="js/weather_map.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
+<script src="js/keys.js"></script>
+<script src="js/weather_map.js"></script>
 </body>
 </html>
