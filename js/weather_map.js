@@ -18,12 +18,20 @@ mapboxgl.accessToken = mapboxAPI;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v9',
-    zoom: 8,
+    zoom: 10,
     center: [-97.7431,30.2672]
     // above is Austin, TX coordinates
 });
 
 
+// function inputValues() {
+//     $('.btn1').onclick(function() {
+//         var lat = $('#latitude').val();
+//         var long = $('#longitude').val();
+//     });
+//     console.log(inputValues);
+//
+// }
 
     var marker = new mapboxgl.Marker({
         draggable: true
