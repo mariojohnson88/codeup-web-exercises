@@ -17,41 +17,53 @@ var iconObjects = [
 mapboxgl.accessToken = mapboxAPI;
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9'
+    style: 'mapbox://styles/mapbox/streets-v9',
+    zoom: 8,
+    center: [-97.7431,30.2672]
+    // above is Austin, TX coordinates
 });
 
-$.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function(data){
-    console.log(data);
-    addCurrentConditions(data.daily.data);
-});
 
-function addCurrentConditions(data) {
-    var url;
-    var forecast;
-    var forecastSummary;
-    var html = "";
-    console.log(data);
-    data.forEach(function(condition, i) {
-        iconObjects.forEach(function (value) {
-            if (condition.icon === value.condition) {
-                url = value.url;
-                forecast = value.forecast;
-                forecastSummary = value.forecastSummary;
+
+    var marker = new mapboxgl.Marker({
+        draggable: true
+    })
+        .setLngLat([-97.7431,30.2672])
+        .addTo(map);
+
+
+            $
+            .get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function (data) {
+                console.log(data);
+                addCurrentConditions(data.daily.data);
+            });
+
+    function addCurrentConditions(data) {
+        var url;
+        var forecast;
+        var forecastSummary;
+        var html = "";
+        console.log(data);
+        data.forEach(function (condition, i) {
+            iconObjects.forEach(function (value) {
+                if (condition.icon === value.condition) {
+                    url = value.url;
+                    forecast = value.forecast;
+                    forecastSummary = value.forecastSummary;
+                }
+            });
+            console.log(condition);
+            if (i <= 2) {
+                html += "<div class='col-4'>";
+                html += "<p>" + Math.round(condition.apparentTemperatureHigh) + "°/" + Math.round(condition.apparentTemperatureLow) + "°</p>";
+                html += "<img src='" + url + "'>";
+                html += "<p>" + "<strong>" + forecast + ": </strong>" + forecastSummary + "</p>";
+                html += "<p>" + "<strong>Humidity: </strong>" + Math.round(condition.humidity * 100) + "</p>";
+                html += "<p>" + "<strong>Wind: </strong>" + condition.windSpeed + "</p>";
+                html += "<p>" + "<strong>Pressure: </strong>" + condition.pressure + "</p>";
+                html += "</div>";
             }
         });
-        console.log(condition);
-        if(i <= 2) {
-            html += "<div class='col-4'>";
-            html += "<p>" + Math.round(condition.apparentTemperatureHigh) + "°/" + Math.round(condition.apparentTemperatureLow) + "°</p>";
-            html += "<img src='" + url + "'>";
-            html += "<p>" + "<strong>" + forecast + ": </strong>" + forecastSummary + "</p>";
-            html += "<p>" + "<strong>Humidity: </strong>" + Math.round(condition.humidity * 100) + "</p>";
-            html += "<p>" + "<strong>Wind: </strong>" + condition.windSpeed + "</p>";
-            html += "<p>" + "<strong>Pressure: </strong>" + condition.pressure + "</p>";
-            html += "</div>";
-        }
-    });
-    $('#weather').append(html)
-}
-
+        $('#weather').append(html)
+    }
 })();
