@@ -25,11 +25,14 @@ var map = new mapboxgl.Map({
 
 
 function inputValues() {
+var lat = $('#latitude').val();
+var long = $('#longitude').val();
     $('.btn1').onclick(function() {
-        var lat = $('#latitude').val();
-        var long = $('#longitude').val();
-        console.log(inputValues());
+    .get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function (data) {
+
+        })
     });
+        console.log(inputValues());
 
 }
 
