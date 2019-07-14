@@ -24,20 +24,24 @@ var map = new mapboxgl.Map({
 });
 
 
-// function inputValues() {
-//     $('.btn1').onclick(function() {
-//         var lat = $('#latitude').val();
-//         var long = $('#longitude').val();
-//     });
-//     console.log(inputValues);
-//
-// }
+function inputValues() {
+    $('.btn1').onclick(function() {
+        var lat = $('#latitude').val();
+        var long = $('#longitude').val();
+        console.log(inputValues());
+    });
+
+}
 
     var marker = new mapboxgl.Marker({
         draggable: true
     })
         .setLngLat([-97.7431,30.2672])
         .addTo(map);
+
+
+
+
 
 
             $

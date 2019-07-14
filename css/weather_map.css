@@ -12,6 +12,8 @@ div.col-4 {
 
 div.coordinates {
     margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
 
 }
 
