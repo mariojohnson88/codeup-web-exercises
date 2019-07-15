@@ -23,18 +23,43 @@ var map = new mapboxgl.Map({
     // above is Austin, TX coordinates
 });
 
+    var lat = $('#latitude').val();
+    var lng = $('#longitude').val();
+    console.log(lat);
+    console.log(lng);
+    //write event listener for sumbit button
+    $('.btn1').click(function(e) {
+        //pulls current input in lng and lat boxes
+        lat = $('#latitude').val();
+        lng = $('#longitude').val();
+        console.log("test");
+        console.log(lat);
+        console.log(lng);
 
-function inputValues() {
-var lat = $('#latitude').val();
-var long = $('#longitude').val();
-    $('.btn1').onclick(function() {
-    .get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function (data) {
+        //resets our cards, to have nothing when we submit new lng and lat
+        $('#weather').empty();
 
-        })
+        //this pulls weather conditions for the submitted lng and lat from DarkSky
+        $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/" + lat + "," + lng).done(function(data) {
+            console.log(data);
+            addCurrentConditions(data.daily.data);
+        });
+
+        //placing lng and lat into an object to use in reverseGeocoder
+        var coordinates = {lng:lng ,lat:lat};
+
+
+        //reverseGeocoder comes from MapBox utils, takes in coordinates and makes a request to mapbox for the address
+        reverseGeocode(coordinates,mapboxAPI).then(function(results){
+            //returns address at lng and lat
+            $('#selectedCity').html(results);
+            console.log(results);
+        });
     });
-        console.log(inputValues());
+// function inputValues() {
+//
+// }
 
-}
 
     var marker = new mapboxgl.Marker({
         draggable: true
@@ -47,8 +72,7 @@ var long = $('#longitude').val();
 
 
 
-            $
-            .get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function (data) {
+            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function(data) {
                 console.log(data);
                 addCurrentConditions(data.daily.data);
             });
