@@ -56,53 +56,51 @@ var map = new mapboxgl.Map({
             console.log(results);
         });
     });
-// function inputValues() {
-//
-// }
-
-
-    var marker = new mapboxgl.Marker({
-        draggable: true
-    })
-        .setLngLat([-97.7431,30.2672])
-        .addTo(map);
 
 
 
+    function placeMarker(info, token, map) {
+        geocode(info.address, token).then(function(coordinates) {
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([-97.7431, 30.2672])
+            .addTo(map)
+        });
+    }
 
 
+$.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function(data) {
+    console.log(data);
+    addCurrentConditions(data.daily.data);
+});
 
-            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function(data) {
-                console.log(data);
-                addCurrentConditions(data.daily.data);
-            });
-
-    function addCurrentConditions(data) {
-        var url;
-        var forecast;
-        var forecastSummary;
-        var html = "";
-        console.log(data);
-        data.forEach(function (condition, i) {
-            iconObjects.forEach(function (value) {
-                if (condition.icon === value.condition) {
-                    url = value.url;
-                    forecast = value.forecast;
-                    forecastSummary = value.forecastSummary;
-                }
-            });
-            console.log(condition);
-            if (i <= 2) {
-                html += "<div class='col-4'>";
-                html += "<p>" + Math.round(condition.apparentTemperatureHigh) + "°/" + Math.round(condition.apparentTemperatureLow) + "°</p>";
-                html += "<img src='" + url + "'>";
-                html += "<p>" + "<strong>" + forecast + ": </strong>" + forecastSummary + "</p>";
-                html += "<p>" + "<strong>Humidity: </strong>" + Math.round(condition.humidity * 100) + "</p>";
-                html += "<p>" + "<strong>Wind: </strong>" + condition.windSpeed + "</p>";
-                html += "<p>" + "<strong>Pressure: </strong>" + condition.pressure + "</p>";
-                html += "</div>";
+function addCurrentConditions(data) {
+    var url;
+    var forecast;
+    var forecastSummary;
+    var html = "";
+    console.log(data);
+    data.forEach(function (condition, i) {
+        iconObjects.forEach(function (value) {
+            if (condition.icon === value.condition) {
+                url = value.url;
+                forecast = value.forecast;
+                forecastSummary = value.forecastSummary;
             }
         });
-        $('#weather').append(html)
-    }
+        console.log(condition);
+        if (i <= 2) {
+            html += "<div class='col-4'>";
+            html += "<p>" + Math.round(condition.apparentTemperatureHigh) + "°/" + Math.round(condition.apparentTemperatureLow) + "°</p>";
+            html += "<img src='" + url + "'>";
+            html += "<p>" + "<strong>" + forecast + ": </strong>" + forecastSummary + "</p>";
+            html += "<p>" + "<strong>Humidity: </strong>" + Math.round(condition.humidity * 100) + "</p>";
+            html += "<p>" + "<strong>Wind: </strong>" + condition.windSpeed + "</p>";
+            html += "<p>" + "<strong>Pressure: </strong>" + condition.pressure + "</p>";
+            html += "</div>";
+        }
+    });
+    $('#weather').append(html)
+}
 })();
