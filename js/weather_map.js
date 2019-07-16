@@ -1,4 +1,4 @@
-(function () {
+// (function () {
 "use strict";
 
 var iconObjects = [
@@ -14,6 +14,7 @@ var iconObjects = [
     {forecastSummary: "Partly Cloudy", forecast: "Clouds", condition: "partly-cloudy-night", url: "climacons-master/SVG/Cloud-Moon.svg"}
 ];
 
+var marker;
 mapboxgl.accessToken = mapboxAPI;
 var map = new mapboxgl.Map({
     container: 'map',
@@ -23,6 +24,49 @@ var map = new mapboxgl.Map({
     // above is Austin, TX coordinates
 });
 
+
+
+    function placeMarker() {
+        // geocode(info.address, mapboxAPI).then(function(coordinates) {
+        marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([-97.7431, 30.2672])
+            .addTo(map)
+        // });
+    }
+    placeMarker();
+var latLng;
+    marker.on('dragend', function(){
+        latLng = marker.getLngLat();
+        console.log(latLng);
+
+        lat = latLng.lat;
+        lng = latLng.lng;
+        console.log(lat);
+        console.log(lng);
+
+        //resets our cards, to have nothing when we submit new lng and lat
+        $('#weather').empty();
+
+        //this pulls weather conditions for the submitted lng and lat from DarkSky
+        $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/" + lat + "," + lng).done(function(data) {
+            console.log(data);
+            addCurrentConditions(data.daily.data);
+        });
+
+        //placing lng and lat into an object to use in reverseGeocoder
+        var coordinates = {lng:lng ,lat:lat};
+
+
+        //reverseGeocoder comes from MapBox utils, takes in coordinates and makes a request to mapbox for the address
+        reverseGeocode(coordinates,mapboxAPI).then(function(results){
+            //returns address at lng and lat
+            $('#selectedCity').html(results);
+            console.log(results);
+        });
+    });
+
     var lat = $('#latitude').val();
     var lng = $('#longitude').val();
     console.log(lat);
@@ -30,9 +74,8 @@ var map = new mapboxgl.Map({
     //write event listener for sumbit button
     $('.btn1').click(function(e) {
         //pulls current input in lng and lat boxes
-        lat = $('#latitude').val();
-        lng = $('#longitude').val();
-        console.log("test");
+        lat = latLng.lat;
+        lng = latLng.lng;
         console.log(lat);
         console.log(lng);
 
@@ -59,15 +102,6 @@ var map = new mapboxgl.Map({
 
 
 
-    function placeMarker(info, token, map) {
-        geocode(info.address, token).then(function(coordinates) {
-        var marker = new mapboxgl.Marker({
-            draggable: true
-        })
-            .setLngLat([-97.7431, 30.2672])
-            .addTo(map)
-        });
-    }
 
 
 $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyAPI + "/29.4241,-98.4936").done(function(data) {
@@ -103,4 +137,4 @@ function addCurrentConditions(data) {
     });
     $('#weather').append(html)
 }
-})();
+// })();
