@@ -27,16 +27,14 @@ var map = new mapboxgl.Map({
 
 
     function placeMarker() {
-        // geocode(info.address, mapboxAPI).then(function(coordinates) {
         marker = new mapboxgl.Marker({
             draggable: true
         })
             .setLngLat([-97.7431, 30.2672])
             .addTo(map)
-        // });
     }
     placeMarker();
-var latLng;
+    var latLng;
     marker.on('dragend', function(){
         latLng = marker.getLngLat();
         console.log(latLng);
