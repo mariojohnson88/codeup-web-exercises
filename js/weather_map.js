@@ -29,6 +29,7 @@ var map = new mapboxgl.Map({
     var geocoder  = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
+
     });
 
     map.addControl(geocoder);

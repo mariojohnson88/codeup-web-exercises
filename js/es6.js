@@ -91,14 +91,16 @@ users.forEach(function(user) {
 let list = '<ul>';
 
 // TODO: rewrite the following loop to use a for..of loop
-developers.forEach(function (developer) {
+// developers.forEach(function (developer) {
 
-  for(let developer of developers)
+  for(let developer of developers) {
+    console.log(developer);
+
 
 
 
 
   // TODO: rewrite the assignment below to use template strings
   list += '<li>' + developer + '</li>';
-});
+}
 list += '</ul>';
