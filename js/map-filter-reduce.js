@@ -44,6 +44,7 @@ const languages = users.filter(function(user) {
  console.log(languages);
 
 
+
  const emails = users.map(function(user){
     return user.email;
  });
@@ -54,7 +55,9 @@ const languages = users.filter(function(user) {
      return accumulation + currentNumber.yearsOfExperience;
  },0);
  console.log(totalYears);
- console.log(totalYears / users.length);
+
+const averageYears= totalYears / users.length;
+console.log(averageYears);
 
 
 const longestEmail = users.reduce(function(previous,current){
@@ -67,11 +70,25 @@ const longestEmail = users.reduce(function(previous,current){
 },"");
 console.log(longestEmail);
 
-
-const instructors= users.reduce(function(total,instructor) {
-    return `${total} ${instructor.name},`;
+//.reduce() can actually take in not only 2 but up to 4 parameters
+const instructors= users.reduce(function(total,instructor,index,array) {
+    if(index === (array.length -1)){
+        return `${total} ${instructor.name}.`;
+    } else {
+         return `${total} ${instructor.name},`;
+    }
 },"Your instructors are:");
 
 console.log(instructors);
 
+
 // Bonus
+const listOfLanguages = users.reduce(function(prev,current){
+    const langs = current.languages;
+    for(const lang of langs) {
+        prev.add(lang)
+    }
+    return prev;
+},new Set);
+
+console.log(listOfLanguages);
