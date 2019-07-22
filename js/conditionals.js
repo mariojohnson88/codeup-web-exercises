@@ -16,6 +16,42 @@
  * Can you refactor your code to use functions?
  */
 
+var message = confirm('Would you like to enter a number?');
+    if(message === true){
+        var number = prompt('Enter your number here!');
+    } if(number > 0) {
+        alert('This is a positive number');
+} else if(number < 0) {
+        alert('This is a negative number');
+} else if (message === false){
+        alert('Maybe next time.')
+}
+
+    if( )
+alert('Your number added to 100 is: ' + (number + 100));
+
+
+
+
+
+
+//
+//     if (number % 2 === 0){
+//         alert('Your number is even.');
+// } if (number % 2 === 1){
+//         alert('This is an odd number.')
+// }  else if(message === false){
+//         alert('Maybe next time.');
+// }
+//     var added = alert('Your number added to 100 is: ' + ( + number + 100));
+//
+//     if (added > 0){
+//         alert('This is a negative number')
+//     } else if(added < 0) {
+//         alert('Your number is positive')
+//     }
+
+
 /* ########################################################################## */
 
 /**
